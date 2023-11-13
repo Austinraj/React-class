@@ -1,11 +1,20 @@
 import React from "react";
 
-function User(propes){
+function Users(){
+    const [name, setName] = React.useState("guvi"); // React Hooks  => use start pannurtu
+    const [age, setAge] = React.useState(21);
+    const [city, setCity] = React.useState("chennai");
+
+    const Changed = () =>{
+        setName("Austin")
+    }
+
     return(
         <div>
-            <p>Name - {this.state.name}</p>
-            <p>Age - {this.state.age}</p>
-            <button onClick={this.Changed}>Change</button>
+            <p>Name - {name}</p>
+            <p>Age - {age}</p>
+            <p>City - {city}</p>
+            <button onClick={Changed}>Change</button>
         </div>
     )
 }
