@@ -35,3 +35,23 @@
 
 
 // yarn create react-app austin-app
+
+
+
+// framework =>
+// nama code framework code sent pannanum
+// code controle framework kita iruku
+
+// angular framework
+
+
+// library =>
+
+// ract library
+// code use pannurom
+// library code controle nakida iruku
+// ex: chart library 
+
+
+
+
