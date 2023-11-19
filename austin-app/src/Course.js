@@ -13,7 +13,8 @@ function Course(props) {//props red only // first parameter varum
         </div>
     )
 }
-
+// function -> props
+// class -> this.
 
 // Class basic components
 
