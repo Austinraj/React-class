@@ -4,6 +4,7 @@ import Course from "./Course";
 
 import Users from "./User";
 
+import Counter from "./Counter";
 
 // Looping
 function App(){ //App components
@@ -32,7 +33,7 @@ function App(){ //App components
     return (
     
     <div>
-
+        <Counter />
     <p >this is from react components </p>
         <Users />
         {course.map((respones)=>{
