@@ -12,33 +12,34 @@ function App(){ //App components
 
 
 
-    const course =[
-        {
-            name:"React",
-            des:"React for front-end"
-        },
-        {
-            name:"Java",
-            des:"for back-eJavand",
-        },
-        {
-            name:"JavaScript",
-            des:"javascript for front-end",
-        },
-        {
-            name:"Php",
-            des:"php for CRM",
-        }
-    ]
+    // const course =[
+    //     {
+    //         name:"React",
+    //         des:"React for front-end"
+    //     },
+    //     {
+    //         name:"Java",
+    //         des:"for back-eJavand",
+    //     },
+    //     {
+    //         name:"JavaScript",
+    //         des:"javascript for front-end",
+    //     },
+    //     {
+    //         name:"Php",
+    //         des:"php for CRM",
+    //     }
+    // ]
     return (
     
     <div>
+        <p>hi Austin</p>
         <Counter />
-    <p >this is from react components </p>
+    {/* <p >this is from react components </p>
         <Users />
         {course.map((respones)=>{
             return <Course {...respones} />
-        })}
+        })} */}
     </div>);
 }
 
