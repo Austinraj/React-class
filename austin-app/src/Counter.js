@@ -1,7 +1,8 @@
-import React from "react";
+import React,{Component} from "react";
 
-
-class Counter extends React.Component(){
+// 
+// React => Component
+class Counter extends Component(){
     constructor(props){
         super(props);
         this.state ={
@@ -30,5 +31,7 @@ class Counter extends React.Component(){
     }
     
 }
-
+// <Counter />
+// const counter = new Counter({name: "tamil", city: "Chennai"});
+// counter
 export default Counter;

@@ -11,3 +11,6 @@ import App from "./App";
 ReactDom.render(<App />, document.getElementById("app"));
 
 // basic setup of react.js
+
+// Prototype - Template , Blueprint
+
