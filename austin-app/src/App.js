@@ -10,8 +10,8 @@ import Counter from "./Counter";
 function App(){ //App components
     // function use panna must return 
 
-
-
+    
+    
     // const course =[
     //     {
     //         name:"React",
