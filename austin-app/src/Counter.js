@@ -9,10 +9,7 @@ function Counter() {
         Avatar: ""
     });
 
-    const handChange= ({target: {name, value}}) =>{
-        setValue({...form, [name]: value});
-        console.log(name, value);
-    }
+    
 
     const submitForm = (evt) =>{
         evt.preventDefault();
@@ -33,7 +30,7 @@ function Counter() {
                                 <input type="text" className="form-control" id="fname" name="fname"
                                     placeholder="Enter Your First Name"
                                     value={form.firstName}
-                                    onChange={handChange}
+                                    onChange={({target: {value}})=> setValue({...form, firstName: value})}
                                     required />
                             </div>
                             <div className="form-group">
@@ -41,7 +38,7 @@ function Counter() {
                                 <input type="text" className="form-control" id="lname" name="lname"
                                     placeholder="Enter Your Last Name" 
                                     value={form.lastName}
-                                    onChange={handChange}
+                                    onChange={({target: {value}})=> setValue({...form, lastName: value})}
                                     required />
                             </div>
                             <div className="form-group">
@@ -49,7 +46,7 @@ function Counter() {
                                 <input type="email" className="form-control" id="email" name="email"
                                     placeholder="Enter Your Email "
                                     value={form.Email}
-                                    onChange={handChange}
+                                    onChange={({target: {value}})=> setValue({...form, Email: value})}
                                     required />
                             </div>
                             <div className="form-group">
@@ -57,7 +54,7 @@ function Counter() {
                                 <input type="text" className="form-control" id="avatar" name="avatar"
                                     placeholder="Enter Your URL " 
                                     value={form.Avatar}
-                                    onChange={handChange}
+                                    onChange={({target: {value}})=> setValue({...form, Avatar: value})}
                                     required />
                             </div>
                             <div className="form-group m-3">
