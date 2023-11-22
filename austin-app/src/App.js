@@ -1,47 +1,62 @@
 import React from "react";
 
-import Course from "./Course";
+// import Course from "./Course";
 
-import Users from "./User";
+// import Users from "./User";
 
-import Counter from "./Counter";
+// import Counter from "./Counter";
 
-// Looping
-function App(){ //App components
-    // function use panna must return 
+import Home from "./containers/Home";
+import About from "./containers/About";
+import Contact from "./containers/Contact";
+import Login from "./containers/Login";
+import Users from "./containers/Users";
+import Register from "./containers/Register";
 
-    
-    
-    // const course =[
-    //     {
-    //         name:"React",
-    //         des:"React for front-end"
-    //     },
-    //     {
-    //         name:"Java",
-    //         des:"for back-eJavand",
-    //     },
-    //     {
-    //         name:"JavaScript",
-    //         des:"javascript for front-end",
-    //     },
-    //     {
-    //         name:"Php",
-    //         des:"php for CRM",
-    //     }
-    // ]
-    return (
-    
-    <div>
-        <p>hi Austin</p>
-        <Counter />
-    {/* <p >this is from react components </p>
-        <Users />
-        {course.map((respones)=>{
-            return <Course {...respones} />
-        })} */}
-    </div>);
+
+
+function App(){
+    return(
+        <Home />
+    )
 }
+
+// // Looping
+// function App(){ //App components
+//     // function use panna must return 
+
+    
+    
+//     // const course =[
+//     //     {
+//     //         name:"React",
+//     //         des:"React for front-end"
+//     //     },
+//     //     {
+//     //         name:"Java",
+//     //         des:"for back-eJavand",
+//     //     },
+//     //     {
+//     //         name:"JavaScript",
+//     //         des:"javascript for front-end",
+//     //     },
+//     //     {
+//     //         name:"Php",
+//     //         des:"php for CRM",
+//     //     }
+//     // ]
+//     return (
+    
+//     <div>
+//         <p>hi Austin</p>
+//         <Counter />
+//     {/* <p >this is from react components </p>
+//         <Users />
+//         {course.map((respones)=>{
+//             return <Course {...respones} />
+//         })} */}
+//     </div>);
+// }
 
 
 
