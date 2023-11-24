@@ -11,7 +11,7 @@ function Register(){
             <div className="card">
                 <div className="card-body">
 
-                    <form action="./index.html" onSubmit="">
+                    <form action="./index.html" >
                         <h2 className="text-align-center">Register</h2>
                         <div className="form-group">
                             <label htmlFor="fname">First Name:</label>
@@ -38,16 +38,16 @@ function Register(){
                                 required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="avatar">Password:</label>
-                            <input type="password" className="form-control" id="avatar" name="avatar"
+                            <label htmlFor="pass">Password:</label>
+                            <input type="password" className="form-control" id="pass" name="pass"
                                 placeholder="Enter Your URL " 
                                 // value={form.Avatar}
                                 // onChange={({target: {value}})=> setValue({...form, Avatar: value})}
                                 required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="avatar">Confirm Password:</label>
-                            <input type="password" className="form-control" id="avatar" name="avatar"
+                            <label htmlFor="conpass">Confirm Password:</label>
+                            <input type="password" className="form-control" id="conpass" name="conpass"
                                 placeholder="Enter Your URL " 
                                 // value={form.Avatar}
                                 // onChange={({target: {value}})=> setValue({...form, Avatar: value})}

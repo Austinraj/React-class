@@ -25,17 +25,17 @@ function Users() {
                                 <tbody id="content">
                                     {UsersListe.map(u => {
                                         return (
-                                            <tr>
+                                            <tr key={u.id}>
                                                 <td>{u.id}</td>
                                                 <td>
-                                                    <img width="50%" src={u.avatar} class="avatar" />
+                                                    <img width="50%" src={u.avatar} className="avatar" />
                                                 </td>
                                                 <td>{u.fname}</td>
                                                 <td>{u.lname}</td>
                                                 <td>{u.username}</td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-primary">edit</button>
-                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                    <button className="btn btn-sm btn-primary">edit</button>
+                                                    <button className="btn btn-sm btn-danger">Delete</button>
                                                 </td>
                                             </tr>
                                         )
@@ -50,7 +50,7 @@ function Users() {
                 <div className="col-sm-6">
                     <div className="card">
                         <div className="card-body">
-                            <form onSubmit="">
+                            <form >
                                 <div className="form-group">
                                     <label htmlFor="fname">First Name:</label>
                                     <input type="text" className="form-control" id="fname" name="fname"

@@ -11,7 +11,7 @@ function Login(){
                 <div className="card">
                     <div className="card-body">
 
-                        <form action="./index.html" onSubmit="">
+                        <form action="./index.html" >
                             <h2>Login</h2>
                             <div className="form-group">
                                 <label htmlFor="email">Email:</label>
