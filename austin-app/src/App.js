@@ -1,37 +1,52 @@
 import React from "react";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 // import Course from "./Course";
 
 // import Users from "./User";
 
 // import Counter from "./Counter";
-
-import Home from "./containers/Home";
 import Navigation from "./components/Navigation";
-import About from "./containers/About";
-import Contact from "./containers/Contact";
-import Login from "./containers/Login";
-import Users from "./containers/Users";
-import Register from "./containers/Register";
+
+ import Routing from "./components/Router";
 
 
 
-function App(){
-    return(
-        <>
-        <Navigation />
-        <Home />
-        <About />
-        <Contact />
-        <Login />
-        <Users />
-        <Register />
-        </>
+
+function App() {
+    return (
+        <Router>
+            <Navigation />
+            <Routing />
+        </Router>
+
     )
     // /home
     //  /about 
     // /users
 }
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,8 +55,8 @@ function App(){
 // function App(){ //App components
 //     // function use panna must return 
 
-    
-    
+
+
 //     // const course =[
 //     //     {
 //     //         name:"React",
@@ -61,7 +76,7 @@ function App(){
 //     //     }
 //     // ]
 //     return (
-    
+
 //     <div>
 //         <p>hi Austin</p>
 //         <Counter />
@@ -81,7 +96,7 @@ function App(){
 // function App(){ //App components
 //     // function use panna must return 
 //     return (
-    
+
 //     <div>
 
 //     <p >this is from react components </p>
@@ -95,5 +110,3 @@ function App(){
 
 
 // import pannratha must export pannanum
-
-export default App;
