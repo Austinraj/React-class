@@ -1,10 +1,15 @@
 import React from "react";
 function Home(){
     return(
-        <>
-        <Navigation />
-        <h1>Home page</h1>
-        </>
+       <div className="carousel slide" data-be-ride="carousel">
+        <div className="carousel-inner">
+        <div className="carousel-item active">
+        <a href="">
+            <img src="/images/banner.webp" className="b-block w-100" alt="Guvi banner" />
+        </a>
+        </div>
+        </div>
+       </div>
     )
 }
 

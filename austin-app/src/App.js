@@ -7,6 +7,7 @@ import React from "react";
 // import Counter from "./Counter";
 
 import Home from "./containers/Home";
+import Navigation from "./components/Navigation";
 import About from "./containers/About";
 import Contact from "./containers/Contact";
 import Login from "./containers/Login";
@@ -17,9 +18,23 @@ import Register from "./containers/Register";
 
 function App(){
     return(
+        <>
+        <Navigation />
         <Home />
+        <About />
+        <Contact />
+        <Login />
+        <Users />
+        <Register />
+        </>
     )
+    // /home
+    //  /about 
+    // /users
 }
+
+
+
 
 // // Looping
 // function App(){ //App components

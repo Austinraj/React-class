@@ -5,7 +5,7 @@ function Register(){
     return(
         <>
 
-        <h1>Home page</h1>
+        <h1>Register page</h1>
         </>
     )
 }
