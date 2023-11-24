@@ -1,7 +1,16 @@
 import React from "react";
 
 import UsersListe from "../sample/users.json";
-function Users() {
+function Users({ location}) {
+    // Example :
+// query parameter => https://www.amazon.in/s?k=laptop
+// Url parameter => https://www.amazon.in/dp/B0C3CNRQD1 
+
+
+
+
+    const count = new URLSearchParams(location.search).get("count");
+   if(count && count <UsersListe.length ) UsersListe.length = count;
     return (
         <div className="container-fluid">
             <div>

@@ -1,14 +1,31 @@
+// Before React 18
+
+// import React from "react"; 
+// import ReactDom from "react-dom";
+
+// import "./style.css"; //css import panrom
+
+// import App from "./App";
+
+
+
+// // 2 argument irukum .render(); 
+// ReactDom.render(<App />, document.getElementById("app"));
+
+
+// React 18
 import React from "react";
-import ReactDom from "react-dom";
+import { createRoot} from "react-dom/client";
 
 import "./style.css"; //css import panrom
 
 import App from "./App";
 
+const root = createRoot(document.getElementById("app"));
+
+root.render(<App />);
 
 
-// 2 argument irukum .render(); 
-ReactDom.render(<App />, document.getElementById("app"));
 
 // basic setup of react.js
 
