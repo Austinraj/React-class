@@ -1,6 +1,6 @@
 import React from "react";
 
-import UsersListe from "./Users.json";
+import UsersListe from "../sample/users.json";
 function Users() {
     return (
         <div className="container-fluid">
