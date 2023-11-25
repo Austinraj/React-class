@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 // import "./style.css";
@@ -16,24 +16,39 @@ import Navigation from "./components/Navigation";
 
  import Context,{AppContext} from "./Context";
 
+ import  { ThemeContext1 } from "./Context";
+
+ import { ThemeContext } from "./Context";
+
 //  Default export => default irukaa serach pannum
 //  Named export => export const name = "austin"; that correct name only use panna mudiyum
 
 function App() {
-    const [count, setCount] = React.useState(0);
-    return (
-        <AppContext.Provider value={count}>
-        <h2>App components -  {count}</h2>
-        <button onClick={()=> setCount(count +1)}>+</button>{" "}
-        <button onClick={()=> setCount(count - 1)}>-</button>{" "}
-        <button onClick={()=> setCount(0)}>0</button>
-        <Test />
+    // const [count, setCount] = React.useState(0);
 
-<Context />         {/* <Router>
-            <Navigation />
+    const theme = useContext(ThemeContext);
+    console.log(theme);
+
+    return (
+//         <AppContext.Provider value={count}>
+//         <h2>App components -  {count}</h2>
+//         <button onClick={()=> setCount(count +1)}>+</button>{" "}
+//         <button onClick={()=> setCount(count - 1)}>-</button>{" "}
+//         <button onClick={()=> setCount(0)}>0</button>
+//         <Test />
+
+// <Context />   
+            <ThemeContext1>    
+             <Router>
+                {/* <div style={theme && theme.theme === "light" ? {backgroundColor: "white", color: "black"} : {backgroundColor:"black", color:"white"}}> */}
+            <Navigation>
+                <h1>Hi guvi</h1>
+            </Navigation>
             <Routing />
-        </Router> */}
-        </AppContext.Provider>
+            {/* </div> */}
+           </Router>
+           </ThemeContext1> 
+        // </AppContext.Provider>
     )
     // /home
     //  /about 

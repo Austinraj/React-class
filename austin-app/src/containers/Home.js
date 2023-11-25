@@ -6,7 +6,7 @@ function Home({ history, location}){
     // replace
     
 
-    console.log(location);
+    // console.log(location);
     return(
        <div className="carousel slide" data-be-ride="carousel">
         <br />

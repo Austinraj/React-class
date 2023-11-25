@@ -1,13 +1,20 @@
 import React from "react";
 
 export const AppContext = React.createContext({ name: "Austin"});
+export const ThemeContext = React.createContext({ });
 
-function Context(){
+export  function ThemeContext1(props){
     // console.log(AppContext);
+const [theme, setTheme] = React.useState("light");
+
+const changeTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+
 return(
-    <h1>Hi</h1>
+    <ThemeContext.Provider value={{theme, changeTheme}}>
+        {props.children}
+    </ThemeContext.Provider>
 )
 }
 
 
-export default Context;
+// export default ThemeContext1;
