@@ -12,8 +12,8 @@ function Home({ history, location}){
         <br />
         <button className="btn btn-primary me-2" onClick={() => history.goBack()}>Go Back</button>
         <button className="btn btn-warning me-2" onClick={() => history.goForward()}>Go Forward</button>
-        <button className="btn btn-warning" onClick={() => history.push("/users")}>Go Users push</button>
-        <button className="btn btn-warning" onClick={() => history.replace("/about")}>Go About Replace</button> 
+        <button className="btn btn-warning me-2" onClick={() => history.push("/users")}>Go Users push</button>
+        <button className="btn btn-danger" onClick={() => history.replace("/about")}>Go About Replace</button> 
         {/* history.replace  bank payment use pannlam */}
         <br /> <br />
         <div className="carousel-inner">

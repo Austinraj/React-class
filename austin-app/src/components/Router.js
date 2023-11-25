@@ -9,6 +9,7 @@ import About from "../containers/About";
 import Contact from "../containers/Contact";
 import Priceing from "../containers/Priceing";
 import Login from "../containers/Login";
+import User from "../containers/User";
 import Users from "../containers/Users";
 import Register from "../containers/Register";
 
@@ -35,6 +36,8 @@ function Routing() {
             <Route path="/contact" component={Contact} />
             <Route path="/priceing" component={Priceing} />
             <Route path="/login" component={Login} />
+            
+            <Route path="/users/:id" component={User} />
             <Route path="/users" component={Users} />
             <Route path="/register" component={Register} />
             <Route path="*" render={() => 
@@ -50,4 +53,4 @@ export default Routing;
 // HashRouter -> #/
 //      ^
 //      |
-// BrowserRouter;   Route - path, component, render , exact; Switch
+// BrowserRouter;   Route - path, component, render , exact; Switch ; macth
