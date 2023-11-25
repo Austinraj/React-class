@@ -12,16 +12,28 @@ import Navigation from "./components/Navigation";
 
  import Routing from "./components/Router";
 
+ import Test from "./components/Test";
 
+ import Context,{AppContext} from "./Context";
 
+//  Default export => default irukaa serach pannum
+//  Named export => export const name = "austin"; that correct name only use panna mudiyum
 
 function App() {
+    const [count, setCount] = React.useState(0);
     return (
-        <Router>
+        <AppContext.Provider value={count}>
+        <h2>App components -  {count}</h2>
+        <button onClick={()=> setCount(count +1)}>+</button>{" "}
+        <button onClick={()=> setCount(count - 1)}>-</button>{" "}
+        <button onClick={()=> setCount(0)}>0</button>
+        <Test />
+
+<Context />         {/* <Router>
             <Navigation />
             <Routing />
-        </Router>
-
+        </Router> */}
+        </AppContext.Provider>
     )
     // /home
     //  /about 

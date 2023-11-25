@@ -10,9 +10,12 @@ function Users() {
 // query parameter => https://www.amazon.in/s?k=laptop
 // Url parameter => https://www.amazon.in/dp/B0C3CNRQD1 
 
+    const [user, setUser] = React.useState({});
 
+    const editUser = (user) =>{
+        setUser(user);
 
-
+    }
   
     return (
         <>
@@ -29,10 +32,10 @@ function Users() {
             </div>
             <div className="row">
                 <div className="col-sm-6">
-                <UserList />
+                <UserList editUser={editUser}  />
                 </div>
                 <div className="col-sm-6">
-                  <UserForm />
+                  <UserForm user={user} />
                 </div>
             </div>
         </div>

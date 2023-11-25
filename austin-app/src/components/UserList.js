@@ -1,7 +1,7 @@
 import React from "react";
 import UsersListe from "../sample/users.json";
 
-function UserList({ location,history}){
+function UserList({editUser}){
 
 
     // const count = new URLSearchParams(location.search).get("count");
@@ -36,7 +36,7 @@ function UserList({ location,history}){
                                 <td>{u.lname}</td>
                                 <td>{u.username}</td>
                                 <td>
-                                    <button className="btn btn-sm btn-primary">edit</button>
+                                    <button className="btn btn-sm btn-primary" onClick={() =>editUser(u)}>edit</button>
                                     <button className="btn btn-sm btn-danger">Delete</button>
                                     <button className="btn btn-sm btn-warning">View</button>
                                 </td>
