@@ -1,6 +1,7 @@
 import React from "react";
 
-function Banner() {
+function Banner(props) {
+    console.log(props)
     return (
         <div className="carousel-inner">
             <div className="carousel-item active">

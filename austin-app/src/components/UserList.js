@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UsersListe from "../sample/users.json";
 
-function UserList({editUser}){
+function UserList({editUser, search}){
 
 
     // const count = new URLSearchParams(location.search).get("count");
@@ -10,6 +10,20 @@ function UserList({editUser}){
     // const redactToUser = (id) =>{
     //     history.push(`users/${id}`);
     //    }
+
+    const userDetail = UsersListe;
+
+   const [filteredList, setfilteredList]  =React.useState(userDetail);
+
+   useEffect(()=>{
+    if(search){
+        setfilteredList(userDetail.filter(({fname})=> fname.match(search)));
+    }
+    else{
+        setfilteredList([...userDetail]);
+    }
+   }, [search]);
+    
     return(
         <div className="card">
         <div className="card-body">
@@ -25,7 +39,7 @@ function UserList({editUser}){
                     </tr>
                 </thead>
                 <tbody id="content">
-                    {UsersListe.map(u => {
+                    {filteredList.map(u => {
                         return (
                             <tr key={u.id}>
                                 <td>{u.id}</td>

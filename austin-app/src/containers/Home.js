@@ -11,6 +11,8 @@ function Home({ history, location}){
 
     const countRef = React.useRef(); // useRef Last decaler panna 2 CountRef use panna last iruka use pannum    // console.log(location);
 
+    const bannerRef = React.useRef();
+
     const inc = () => setCount(count + 1);
     const dec = () => setCount(count - 1);
     const res = () => setCount(0);
@@ -25,6 +27,10 @@ function Home({ history, location}){
     const resRef = () =>{
         countRef.current.innerText = Number(countRef.current.innerText = 0);
          
+    }
+
+    const seeBanner = () =>{
+        console.log(bannerRef);
     }
 
     return(
@@ -52,9 +58,14 @@ function Home({ history, location}){
 
         <br />
         <br />
-        <button className="btn btn-warning">See Banner</button>
-        <Banner />
+        <button className="btn btn-warning" onClick={seeBanner}>See Banner</button>
+        {"  "}
+        <Banner ref={bannerRef} />
+        
        </div>
+    //    ref user laibary access panna ref use pannrom
+    // ref class base object use panni panna mudiyum 
+    // but function base object illa use panna mudiyathu
     )
 }
 

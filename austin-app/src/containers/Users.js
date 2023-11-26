@@ -16,9 +16,12 @@ function Users() {
         setUser(user);
 
     }
+
+    const [search, setSearch] = React.useState("");
   
     return (
         <>
+        
         <select className="form-control" style={{width : 100}}>
             <option>--Select--</option>
         <option>5</option>
@@ -30,6 +33,12 @@ function Users() {
             <div>
                 <h1>Users</h1>
             </div>
+            <input type="text" className="form-control" placeholder="Search user by name"
+            value={search}
+            onChange={({target: {value}})=> setSearch(value)}
+             />
+            <br />
+            <br />
             <div className="row">
                 <div className="col-sm-6">
                 <UserList editUser={editUser}  />
