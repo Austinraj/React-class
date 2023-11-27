@@ -1,5 +1,4 @@
 import React from "react";
-
 import UserList from "../components/UserList";
 
 import UserForm from "../components/UserForm";
@@ -9,7 +8,7 @@ function Users() {
     // Example :
 // query parameter => https://www.amazon.in/s?k=laptop
 // Url parameter => https://www.amazon.in/dp/B0C3CNRQD1 
-
+    
     const [user, setUser] = React.useState({});
 
     const editUser = (user) =>{
