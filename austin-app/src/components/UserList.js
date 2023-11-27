@@ -11,18 +11,58 @@ function UserList({editUser, search}){
     //     history.push(`users/${id}`);
     //    }
 
-    const userDetail = UsersListe;
+    const [isLoder ,setIsLoder] = React.useState(true);
 
-   const [filteredList, setfilteredList]  =React.useState(userDetail);
+    const [users, setUsers] = React.useState([]);
 
-   useEffect(()=>{
-    if(search){
-        setfilteredList(userDetail.filter(({fname})=> fname.match(search)));
+    // API Call
+
+    // Get Users
+    const getUsers = async () =>{
+        try{
+            let response = await fetch("https://www.melivecode.com/api/users");
+            if(!response.ok){
+                throw new Error("Request Failed");
+            }
+            response = await response.json();
+            setUsers(response);
+            setIsLoder(false);
+        } catch(err){
+            console.error(err);
+        }
     }
-    else{
-        setfilteredList([...userDetail]);
+    // Create Users
+    const createUsers = async () =>{
+
     }
-   }, [search]);
+    // Update Users
+    const updateUsers = async () =>{
+
+    }
+    // Delete Users
+    const deleteUsers = async () =>{
+
+    }
+
+
+    useEffect(()=>{
+        getUsers();
+        
+    },[])
+
+
+//     const userDetail = UsersListe;
+
+//    const [filteredList, setfilteredList]  =React.useState(userDetail);
+
+//    useEffect(()=>{
+//     if(search){
+//         setfilteredList(userDetail.filter(({fname})=> fname.match(search)));
+//     }
+//     else{
+//         setfilteredList([...userDetail]);
+//     }
+//    }, [search]);
     
     return(
         <div className="card">
@@ -39,12 +79,19 @@ function UserList({editUser, search}){
                     </tr>
                 </thead>
                 <tbody id="content">
-                    {filteredList.map(u => {
+                    {isLoder &&(
+                        <div className="d-flex justify-content-center">
+                        <div className="spinner-border text-secondary" role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    )}
+                    {users.map(u => {
                         return (
                             <tr key={u.id}>
                                 <td>{u.id}</td>
                                 <td>
-                                    <img width="50%" src={u.avatar} className="avatar" />
+                                    <img width="50" src={u.avatar} className="avatar" />
                                 </td>
                                 <td>{u.fname}</td>
                                 <td>{u.lname}</td>
