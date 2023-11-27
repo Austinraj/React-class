@@ -39,14 +39,14 @@ function Users() {
              />
             <br />
             <br />
-            <div className="row">
-                <div className="col-sm-6">
+            {/* <div className="row"> */}
+                {/* <div className="col-sm-6"> */}
                 <UserList editUser={editUser}  />
-                </div>
-                <div className="col-sm-6">
+                {/* </div> */}
+                {/* <div className="col-sm-6">
                   <UserForm user={user} />
-                </div>
-            </div>
+                </ div> */}
+           {/* </div> */}
         </div>
         </>
     )
