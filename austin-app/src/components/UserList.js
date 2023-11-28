@@ -1,11 +1,34 @@
 // Useing for axios method
 import React, { useEffect } from "react";
 
-import { Formik, Field, Form, ErrorMessage} from "formik";
+import joi from "joi";
+
+import { Formik, Field, Form, ErrorMessage, } from "formik";
 
 import axios from "axios";
 
+const userSchema = joi.object({
+    fname: joi.string().min(6).max(12).required(),
+    lname: joi.string().required(),
+    username: joi.string().alphanum().required(),
+    password: joi.string().alphanum().min(6).max(18).required(),
+    email: joi.string().email({tlds:{allow: false}}).required(),
+    avatar: joi.string().uri().required(),
+});
+
 // FORMIK for  = user form ka
+
+//  joi for validation ka
+
+const initial = {
+    fname: "",
+    lname: "",
+    username: "",
+    email: "",
+    password: "",
+    avatar: "",
+}
+
 
 function UserList(){
 
@@ -18,20 +41,6 @@ function UserList(){
 
     const API_URL = "https://www.melivecode.com/api/users";
 
-    const initial = {
-        fname: "",
-        lname: "",
-        username: "",
-        email: "",
-        password: "",
-        avatar: "",
-    }
-
-    const MAIL_FORMAT = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-
-    const URL_FORMAT = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
-
-    const PASSWORD_FORMAT = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")
 
     const [isLoder ,setIsLoder] = React.useState(true);
     const [userForm, setUserForm] = React.useState(initial);
@@ -95,27 +104,46 @@ function UserList(){
 
     const validate = (values)=>{
             const errors = {};
-            if(!values.fname){
-             errors.fname = "first name is requried"
-            }else if (!values.lname){
-             errors.lname = "last name is requried"
-            }else if (!values.username){
-             errors.username = "User name is requried"
-            }else if (!values.email){
-             errors.email = "email is requried"
-            }else if (!MAIL_FORMAT.test(values.email)){
-             errors.email = "Email is invalid";
-            }else if (!values.password){
-             errors.password = "password is requried"
-            }else if (!values.avatar){
-             errors.avatar = "avatar  is requried"
-            }
+
+            const {error} =userSchema.validate(values);
+        if(error){
+            const [err] = error.details;
+            errors[err.context.key] = err.message;
+
+        }
+
+        //     if(!values.fname){
+        //      errors.fname = "first name is requried"
+        //     }else if (!values.lname){
+        //      errors.lname = "last name is requried"
+        //     }else if (!values.username){
+        //      errors.username = "User name is requried"
+        //     }else if (!values.email){
+        //      errors.email = "email is requried"
+        //     }else if (!MAIL_FORMAT.test(values.email)){
+        //      errors.email = "Email is invalid";
+        //     }else if (!values.password){
+        //      errors.password = "password is requried"
+        //     }else if (!values.avatar){
+        //      errors.avatar = "avatar  is requried"
+        //     }
 
             return errors;
            }
     
-           const handleSubmit =(values)=>{
-            console.log("Submited", values);
+    const handleSubmit =(values)=>{
+     console.log("Submited", values);
+      const {error} = userSchema.validate(values);
+      if(!error){
+        // API call
+      }
+           
+            // try {
+            //     const data = userSchema.validate(values);
+            // }
+            // catch(err){
+            //     console.error(err);
+            // }
           }
 //     const userDetail = UsersListe;
 
@@ -181,18 +209,15 @@ function UserList(){
             </div>
     </div>
     </div>
-            <div className="col-sm-6">
-            <div className="card">
-            <div className="card-body">
-              <Formik initialValues={initial}
-              
-              validate={validate}
-              onSubmit={handleSubmit}>
-                    {
-                        ({values, errors,touched, handleChange, handleSubmit, handleBlur})=>{
-                            return (
+       <div className="col-sm-6">
+    <div className="card">
+    <div className="card-body">
+    <Formik initialValues={initial}
+          validate={validate}
+          onSubmit={handleSubmit}>
+            { ()=>{ return (
                                 <Form className="mt-4"  >
-                                <div className="form-group">
+                                 <div className="form-group">
                                     <label htmlFor="fname">First Name:</label>
                                     {/* <input type="text" className="form-control" id="fname" name="fname"
                                         placeholder="Enter Your First Name " value={values.fname} onChange={handleChange} onBlur={handleBlur} required />
