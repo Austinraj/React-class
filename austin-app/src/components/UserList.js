@@ -23,21 +23,110 @@ function UserList(){
         avatar: "",
     }
 
+    const MAIL_FORMAT = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
+    const URL_FORMAT = new RegExp("(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})")
+
+    const PASSWORD_FORMAT = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")
+
     const [isLoder ,setIsLoder] = React.useState(true);
 
     const [users, setUsers] = React.useState([]);
 
     const [userForm, setUserForm] = React.useState(initial)
 
+    const [error, setError] = React.useState(initial);
+
+    const [touched, setTouched] = React.useState(initial);
+
+    const handBurl = ({target: {name}}) =>{
+    setTouched({  ...touched, [name]: true});
+
+    }
+
     const handChange  = ({target: {name , value}}) =>{
+        // console.log(name ,value);
+        const err = { ...error};
+
+        switch(name){
+            case "fname":{
+                if(!value){
+                    err.fname = "First name is required"
+                }else{
+                    err.fname = "";
+                }
+                break;
+            }
+            case "lname":{
+                if(!value){
+                    err.lname = "Last name is required"
+                }else{
+                    err.lname = "";
+                }
+                break;
+            }
+            case "username":{
+                if(!value){
+                    err.username = "User name is required"
+                }else{
+                    err.username = "";
+                }
+                break;
+            }
+            case "password":{
+                if(!value){
+                    err.password = "Password is required"
+                }else if(!PASSWORD_FORMAT.test(value)){
+                    err.password = "Password is invalid"
+                }else{
+                    err.password = "";
+                }
+                break;
+            }
+            case "email":{
+                if(!value){
+                    err.email = "Email  is required"
+                }else if(!MAIL_FORMAT.test(value)){
+                    err.email = "Email is invalid"
+                }else{
+                    err.email = "";
+                }
+                break;
+            }
+            case "avatar":{
+                if(!value){
+                    err.avatar = "Avatar is required"
+                }else if(!URL_FORMAT.test(value)){
+                    err.avatar = "Avatar URL is invalid"
+                }
+                else{
+                    err.avatar = "";
+                }
+                break;
+            }
+        }
+       
+        setError(err);
+        // console.log(err);
+
+
         setUserForm({...userForm, [name]: value}) 
         }
+
+
+
+    
     const handelSubmit = (evt)=>{
         evt.preventDefault();
-        if(userForm.id){
-            updateUsers();
-        }else{
-       createUsers();
+        const isTouched = Object.values(touched).every(t => t === true ); // t === true
+        const isNotError = Object.values(error).every(t => t === "");
+
+        if(isTouched && isNotError){
+            if(userForm.id){
+                updateUsers();
+            }else{
+           createUsers();
+            }
         }
     }
 
@@ -107,7 +196,9 @@ function UserList(){
 //         setfilteredList([...userDetail]);
 //     }
 //    }, [search]);
-    
+//     console.log("touched", touched);
+//     console.log("Error",error);
+//     console.log("uaer",userForm);
     return(
         <div className="row">
              <div className="col-sm-6">
@@ -164,33 +255,39 @@ function UserList(){
                     <div className="form-group">
                         <label htmlFor="fname">First Name:</label>
                         <input type="text" className="form-control" id="fname" name="fname"
-                            placeholder="Enter Your First Name " value={userForm.fname} onChange={handChange} required />
+                            placeholder="Enter Your First Name " value={userForm.fname} onChange={handChange} onBlur={handBurl} required />
+                            <span className="text-danger">{error.fname}</span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="lname">Last Name:</label>
                         <input type="text" className="form-control" id="lname" name="lname"
-                            placeholder="Enter Your Last Name" value={userForm.lname} onChange={handChange} required />
+                            placeholder="Enter Your Last Name" value={userForm.lname} onChange={handChange} onBlur={handBurl} required />
+                            <span className="text-danger">{error.lname}</span>
                     </div>
                     
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
                         <input type="email" className="form-control" id="email" name="email"
-                            placeholder="Enter Your Email " value={userForm.email} onChange={handChange} required />
+                            placeholder="Enter Your Email " value={userForm.email} onChange={handChange} onBlur={handBurl}required />
+                            <span className="text-danger">{error.email}</span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="username">User Name:</label>
                         <input type="text" className="form-control" id="username" name="username"
-                            placeholder="Enter Your User Name" value={userForm.username} onChange={handChange} required />
+                            placeholder="Enter Your User Name" value={userForm.username} onChange={handChange} onBlur={handBurl} required />
+                            <span className="text-danger">{error.username}</span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
                         <input type="password" className="form-control" id="password" name="password"
-                            placeholder="Enter Your Password " value={userForm.password} onChange={handChange} required />
+                            placeholder="Enter Your Password " value={userForm.password} onChange={handChange} onBlur={handBurl} required />
+                            <span className="text-danger">{error.password}</span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="avatar">Avatar:</label>
                         <input type="text" className="form-control" id="avatar" name="avatar"
-                            placeholder="Enter Your URL " value={userForm.avatar} onChange={handChange} required />
+                            placeholder="Enter Your URL " value={userForm.avatar} onChange={handChange} onBlur={handBurl} required />
+                            <span className="text-danger">{error.avatar}</span>
                     </div>
                     <div className="form-group m-3">
                         <button type="reset" className="btn  btn-secondary">Reset</button>
@@ -210,6 +307,8 @@ function UserList(){
     </div>
     )
 }
+// two type validation form submit and filed validation
+// but currently filed validation pannraga
 
 
 export default UserList;
