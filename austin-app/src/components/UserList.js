@@ -1,7 +1,11 @@
 // Useing for axios method
 import React, { useEffect } from "react";
 
+import { Formik, Field, Form, ErrorMessage} from "formik";
+
 import axios from "axios";
+
+// FORMIK for  = user form ka
 
 function UserList(){
 
@@ -30,105 +34,11 @@ function UserList(){
     const PASSWORD_FORMAT = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")
 
     const [isLoder ,setIsLoder] = React.useState(true);
-
+    const [userForm, setUserForm] = React.useState(initial);
     const [users, setUsers] = React.useState([]);
 
-    const [userForm, setUserForm] = React.useState(initial)
 
-    const [error, setError] = React.useState(initial);
-
-    const [touched, setTouched] = React.useState(initial);
-
-    const handBurl = ({target: {name}}) =>{
-    setTouched({  ...touched, [name]: true});
-
-    }
-
-    const handChange  = ({target: {name , value}}) =>{
-        // console.log(name ,value);
-        const err = { ...error};
-
-        switch(name){
-            case "fname":{
-                if(!value){
-                    err.fname = "First name is required"
-                }else{
-                    err.fname = "";
-                }
-                break;
-            }
-            case "lname":{
-                if(!value){
-                    err.lname = "Last name is required"
-                }else{
-                    err.lname = "";
-                }
-                break;
-            }
-            case "username":{
-                if(!value){
-                    err.username = "User name is required"
-                }else{
-                    err.username = "";
-                }
-                break;
-            }
-            case "password":{
-                if(!value){
-                    err.password = "Password is required"
-                }else if(!PASSWORD_FORMAT.test(value)){
-                    err.password = "Password is invalid"
-                }else{
-                    err.password = "";
-                }
-                break;
-            }
-            case "email":{
-                if(!value){
-                    err.email = "Email  is required"
-                }else if(!MAIL_FORMAT.test(value)){
-                    err.email = "Email is invalid"
-                }else{
-                    err.email = "";
-                }
-                break;
-            }
-            case "avatar":{
-                if(!value){
-                    err.avatar = "Avatar is required"
-                }else if(!URL_FORMAT.test(value)){
-                    err.avatar = "Avatar URL is invalid"
-                }
-                else{
-                    err.avatar = "";
-                }
-                break;
-            }
-        }
-       
-        setError(err);
-        // console.log(err);
-
-
-        setUserForm({...userForm, [name]: value}) 
-        }
-
-
-
-    
-    const handelSubmit = (evt)=>{
-        evt.preventDefault();
-        const isTouched = Object.values(touched).every(t => t === true ); // t === true
-        const isNotError = Object.values(error).every(t => t === "");
-
-        if(isTouched && isNotError){
-            if(userForm.id){
-                updateUsers();
-            }else{
-           createUsers();
-            }
-        }
-    }
+  
 
     // API Call
 
@@ -183,7 +93,30 @@ function UserList(){
         
     },[])
 
+    const validate = (values)=>{
+            const errors = {};
+            if(!values.fname){
+             errors.fname = "first name is requried"
+            }else if (!values.lname){
+             errors.lname = "last name is requried"
+            }else if (!values.username){
+             errors.username = "User name is requried"
+            }else if (!values.email){
+             errors.email = "email is requried"
+            }else if (!MAIL_FORMAT.test(values.email)){
+             errors.email = "Email is invalid";
+            }else if (!values.password){
+             errors.password = "password is requried"
+            }else if (!values.avatar){
+             errors.avatar = "avatar  is requried"
+            }
 
+            return errors;
+           }
+    
+           const handleSubmit =(values)=>{
+            console.log("Submited", values);
+          }
 //     const userDetail = UsersListe;
 
 //    const [filteredList, setfilteredList]  =React.useState(userDetail);
@@ -251,54 +184,94 @@ function UserList(){
             <div className="col-sm-6">
             <div className="card">
             <div className="card-body">
-                <form onSubmit={handelSubmit} >
-                    <div className="form-group">
-                        <label htmlFor="fname">First Name:</label>
-                        <input type="text" className="form-control" id="fname" name="fname"
-                            placeholder="Enter Your First Name " value={userForm.fname} onChange={handChange} onBlur={handBurl} required />
-                            <span className="text-danger">{error.fname}</span>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="lname">Last Name:</label>
-                        <input type="text" className="form-control" id="lname" name="lname"
-                            placeholder="Enter Your Last Name" value={userForm.lname} onChange={handChange} onBlur={handBurl} required />
-                            <span className="text-danger">{error.lname}</span>
-                    </div>
-                    
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" className="form-control" id="email" name="email"
-                            placeholder="Enter Your Email " value={userForm.email} onChange={handChange} onBlur={handBurl}required />
-                            <span className="text-danger">{error.email}</span>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="username">User Name:</label>
-                        <input type="text" className="form-control" id="username" name="username"
-                            placeholder="Enter Your User Name" value={userForm.username} onChange={handChange} onBlur={handBurl} required />
-                            <span className="text-danger">{error.username}</span>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" className="form-control" id="password" name="password"
-                            placeholder="Enter Your Password " value={userForm.password} onChange={handChange} onBlur={handBurl} required />
-                            <span className="text-danger">{error.password}</span>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="avatar">Avatar:</label>
-                        <input type="text" className="form-control" id="avatar" name="avatar"
-                            placeholder="Enter Your URL " value={userForm.avatar} onChange={handChange} onBlur={handBurl} required />
-                            <span className="text-danger">{error.avatar}</span>
-                    </div>
-                    <div className="form-group m-3">
-                        <button type="reset" className="btn  btn-secondary">Reset</button>
-                        <button type="submit" className="btn btn-success">
-                            {
-                                userForm.id ? "Update" : "Create"
-                            }
-                        </button>
-                    </div>
+              <Formik initialValues={initial}
+              
+              validate={validate}
+              onSubmit={handleSubmit}>
+                    {
+                        ({values, errors,touched, handleChange, handleSubmit, handleBlur})=>{
+                            return (
+                                <Form className="mt-4"  >
+                                <div className="form-group">
+                                    <label htmlFor="fname">First Name:</label>
+                                    {/* <input type="text" className="form-control" id="fname" name="fname"
+                                        placeholder="Enter Your First Name " value={values.fname} onChange={handleChange} onBlur={handleBlur} required />
+                                        {touched.fname && (
+                                        <span className="text-danger">{errors.fname}</span>
+                                        )} */}
+                                        <Field className="form-control"  name="fname" placeholder="Enter Your First Name "/>
+                                        <ErrorMessage className="text-danger" name="fname" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="lname">Last Name:</label>
+                                    {/* <input type="text" className="form-control" id="lname" name="lname"
+                                        placeholder="Enter Your Last Name" value={values.lname} onChange={handleChange} onBlur={handleBlur} required />
+                                         {touched.lname && (
+                                        <span className="text-danger">{errors.fname}</span>
+                                        )} */}
+                                        <Field className="form-control"  name="lname" placeholder="Enter Your Last Name"/>
+                                        <ErrorMessage className="text-danger" name="lname" />
 
-                </form>
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="email">Email:</label>
+                                    {/* <input type="email" className="form-control" id="email" name="email"
+                                        placeholder="Enter Your Email " value={values.email} onChange={handleChange} onBlur={handleBlur}required />
+                                        {touched.email && (
+                                        <span className="text-danger">{errors.fname}</span>
+                                        )} */}
+                                        <Field className="form-control" type="email"  name="email" placeholder="Enter Your Email "/>
+                                        <ErrorMessage className="text-danger" name="email" />
+
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="username">User Name:</label>
+                                    {/* <input type="text" className="form-control" id="username" name="username"
+                                        placeholder="Enter Your User Name" value={values.username} onChange={handleChange} onBlur={handleBlur} required />
+                                        {touched.username && (
+                                        <span className="text-danger">{errors.fname}</span>
+                                        )} */}
+                                        <Field className="form-control"  name="username" placeholder="Enter Your User Name"/>
+                                        <ErrorMessage className="text-danger" name="username" />
+                                        
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="password">Password:</label>
+                                    {/* <input type="password" className="form-control" id="password" name="password"
+                                        placeholder="Enter Your Password " value={values.password} onChange={handleChange} onBlur={handleBlur} required />
+                                         {touched.password && (
+                                        <span className="text-danger">{errors.fname}</span>
+                                        )} */}
+                                        <Field className="form-control" type="password" name="password" placeholder="Enter Your Password "/>
+                                        <ErrorMessage className="text-danger" name="password" />
+
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="avatar">Avatar:</label>
+                                    {/* <input type="url" className="form-control" id="avatar" name="avatar"
+                                        placeholder="Enter Your URL " value={values.avatar} onChange={handleChange} onBlur={handleBlur} required />
+                                         {touched.avatar && (
+                                        <span className="text-danger">{errors.fname}</span>
+                                        )} */}
+                                        <Field className="form-control" type="url" name="avatar" placeholder="Enter Your URL "/>
+                                        <ErrorMessage className="text-danger" name="avatar" />
+
+                                </div>
+                                <div className="form-group m-3">
+                                    <button type="reset" className="btn  btn-secondary">Reset</button>
+                                    <button type="submit" className="btn btn-success">
+                                        {
+                                            userForm.id ? "Update" : "Create"
+                                        }
+                                    </button>
+                                </div>
+            
+                            </Form>
+                            )
+                        }
+                    }
+              </Formik>
             </div>
         </div>
 
