@@ -16,7 +16,7 @@ const userSchema = joi.object({
     avatar: joi.string().uri().required(),
 });
 
-// FORMIK for  = user form ka
+// FORMIK for  = users form ka
 
 //  joi for validation ka
 
